@@ -28,7 +28,14 @@ def index():
     cursor=db.cursor()
     cursor.execute('SELECT * FROM grocery')
     row=cursor.fetchall()
-    return render_template('home.html',groceries=row)
+
+    if session['signin_success']:
+        signin=True
+    else:
+        signin=False
+    print(signin)
+
+    return render_template('home.html',groceries=row,signin=signin)
  
 @app.route('/cart',methods=['POST'])
 def cart():
@@ -41,3 +48,44 @@ def cart():
         if foodId:
             session['cart'].append(foodId)
     return redirect('/')
+
+@app.route('/login',methods=['POST','GET'])
+def login():
+
+    if 'user' not in session:
+        session['user']={}
+
+    if request.method=='POST':  
+        name=request.form.get('name')
+        passwd=request.form.get('passwd')
+
+        db=get_db()
+        cursor=db.cursor()
+        cursor.execute('SELECT * FROM customer WHERE name=? AND passwd=?',(name,str(passwd)))
+        user=cursor.fetchone()
+        
+        if user: 
+            session['user']={'user_id':user['id']}
+            return redirect('/')
+        return render_template('login.html',error='true')
+
+    return render_template('login.html',error='')
+
+@app.route('/signin',methods=['POST','GET'])
+def signin():
+        
+    if request.method=='POST':
+        name=request.form.get('name')
+        passwd=request.form.get('passwd')
+
+        db=get_db()
+        cursor=db.cursor()
+        cursor.execute('INSERT INTO customer("name","passwd") VALUES(?,?)',(name,str(passwd)))
+        db.commit()
+        id=cursor.lastrowid
+
+        session['user']={'user_id':id}
+        session['signin_success'] = True
+        return redirect('/')
+    
+    return render_template('signin.html')

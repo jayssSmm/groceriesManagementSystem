@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Sign In
+{% endblock %}
+
+{% block body %}
+    <h1>Sign In</h1>
+
+    <form method="post">
+        <input required type="text" name="name" autocomplete="off" autofocus placeholder="Name">
+        <input required type="password" name="passwd" autocomplete="off" placeholder="Passwd">
+        <button type="submit">Sign In</button>
+    </form>
+    
+{% endblock %}

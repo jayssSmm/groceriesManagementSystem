@@ -4,14 +4,36 @@
     Home
 {% endblock %}
 
+{% block css %}
+    <link rel="stylesheet" href="../static/home.css">
+{% endblock %}
+
 {% block body %}
+    <!-- <script>
+        if ({{signin | tojson}}){
+            alert('Sign In was Successfull')
+        }
+    </script> -->
+    
     <section>
         <h1>Grocery Store</h1>
         <nav>
             <ul>
-                <li>Login</li>
-                <li>Signin</li>
-                <li>Cart</li>
+                <li>
+                    <form action="/login">
+                        <button type="submit">Login</button>
+                    </form>
+                </li>
+                <li>
+                    <form action="/signin">
+                        <button type="submit">Sign In</button>
+                    </form>
+                </li>
+                <li>
+                    <form action="/cart">
+                        <button type="submit">Cart</button>
+                    </form>
+                </li>
             </ul>
         </nav>
     </section>

@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block body %}
+    <h1>Login</h1>
+
+    {% if error %}
+        <script>
+            alert('Invalid login credentials')
+        </script>
+    {% endif %}
+
+    <form method="post">
+        <input required type="text" name="name" autocomplete="off" autofocus placeholder="Name">
+        <input required type="password" name="passwd" autocomplete="off" placeholder="Passwd">
+        <button type="submit">Login</button>
+    </form>
+    
+{% endblock %}
