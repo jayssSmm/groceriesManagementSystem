@@ -1,0 +1,121 @@
+si_no,name,company,quantity,price_usd,tax_percent,item_type
+1,Chickpeas,Kellogg's,116,31.79,8,Dry Goods
+2,Shampoo,P&G,140,15.12,10,Dry Goods
+3,Cereal,PepsiCo,131,29.19,8,Dry Goods
+4,Vinegar,Danone,113,13.13,5,Dairy
+5,Rice,LocalFarm Co,109,20.2,10,Personal Care
+6,Carrot,Tyson,100,47.38,12,Beverage
+7,Chocolate,P&G,150,20.36,5,Condiment
+8,Milk,FreshHarvest,130,6.36,15,Beverage
+9,Milk,Nestle,106,43.96,10,Dairy
+10,Oats,General Mills,131,7.65,8,Produce
+11,Soap Bar,DailyNeeds Inc,120,14.14,5,Seafood
+12,Ice Cream,General Mills,113,13.21,12,Personal Care
+13,Mayonnaise,Tyson,141,41.89,12,Condiment
+14,Coffee,DailyNeeds Inc,119,21.9,15,Snack
+15,Apple,General Mills,122,39.15,8,Condiment
+16,Pasta,General Mills,131,36.45,5,Dairy
+17,Tomato,Organic Valley,101,22.66,5,Grain
+18,Chips,Danone,127,27.31,15,Dry Goods
+19,Cooking Oil,LocalFarm Co,150,10.04,10,Snack
+20,Coffee,Danone,130,48.85,5,Meat
+21,Yogurt,Kraft,145,1.51,15,Produce
+22,Cereal,FreshHarvest,116,6.84,12,Dairy
+23,Dish Soap,CocaCola,118,43.57,15,Seafood
+24,Toothpaste,General Mills,109,24.98,5,Dairy
+25,Juice,Tyson,122,19.03,12,Personal Care
+26,Chips,CocaCola,127,48.98,15,Personal Care
+27,Chocolate,Unilever,117,26.93,15,Produce
+28,Ice Cream,Kellogg's,110,48.53,5,Condiment
+29,Sugar,General Mills,140,26.37,12,Produce
+30,Cooking Oil,LocalFarm Co,122,49.42,5,Dry Goods
+31,Spinach,Kellogg's,140,7.41,12,Grain
+32,Carrot,Nestle,119,1.98,8,Meat
+33,Sanitizer,Danone,133,10.78,12,Beverage
+34,Cooking Oil,DailyNeeds Inc,108,46.03,0,Household
+35,Sanitizer,Organic Valley,140,7.76,15,Condiment
+36,Rice,DailyNeeds Inc,100,29.51,0,Condiment
+37,Spinach,CocaCola,147,16.67,15,Produce
+38,Mayonnaise,Unilever,143,28.63,12,Condiment
+39,Noodles,Tyson,125,9.16,0,Grain
+40,Coffee,General Mills,150,23.19,15,Condiment
+41,Sanitizer,General Mills,142,10.96,10,Dairy
+42,Cashews,Organic Valley,125,46.11,5,Meat
+43,Orange,General Mills,107,15.43,0,Condiment
+44,Vinegar,DailyNeeds Inc,102,16.63,10,Dry Goods
+45,Dish Soap,Unilever,114,18.52,5,Produce
+46,Apple,Nestle,135,38.22,5,Grain
+47,Butter,P&G,120,34.12,12,Beverage
+48,Juice,Danone,134,39.42,8,Meat
+49,Almonds,Kellogg's,113,3.46,15,Produce
+50,Almonds,LocalFarm Co,141,26.25,12,Beverage
+51,Beans,Organic Valley,105,26.48,5,Dairy
+52,Wheat Flour,FreshHarvest,135,3.3,10,Personal Care
+53,Detergent,General Mills,145,33.71,5,Personal Care
+54,Coffee,Unilever,122,32.33,0,Dry Goods
+55,Pork,General Mills,100,3.2,15,Grain
+56,Spinach,Unilever,111,23.43,8,Grain
+57,Chocolate,Nestle,125,30.35,5,Beverage
+58,Pasta,DailyNeeds Inc,133,23.41,0,Grain
+59,Oats,FreshHarvest,127,31.26,12,Dairy
+60,Orange,General Mills,124,44.45,0,Produce
+61,Banana,Kraft,148,32.25,10,Meat
+62,Bread,P&G,133,11.16,5,Produce
+63,Mayonnaise,Kellogg's,135,40.51,10,Personal Care
+64,Onion,Organic Valley,107,26.5,15,Beverage
+65,Noodles,LocalFarm Co,113,3.69,12,Household
+66,Spinach,P&G,141,34.28,12,Condiment
+67,Cheese,Kraft,100,11.25,10,Snack
+68,Spinach,PepsiCo,107,39.54,12,Dairy
+69,Chicken,PepsiCo,134,4.42,0,Grain
+70,Tomato,Kellogg's,121,48.18,8,Meat
+71,Tomato,P&G,150,20.83,12,Produce
+72,Juice,Kraft,129,12.34,8,Snack
+73,Soda,Danone,135,5.55,8,Personal Care
+74,Fish,Tyson,142,21.18,10,Meat
+75,Butter,Nestle,124,2.35,5,Condiment
+76,Soda,Tyson,141,22.01,0,Household
+77,Soda,Nestle,137,37.63,15,Beverage
+78,Oats,Unilever,148,32.33,8,Beverage
+79,Chocolate,CocaCola,148,23.13,5,Condiment
+80,Shampoo,FreshHarvest,113,42.75,12,Personal Care
+81,Toothpaste,DailyNeeds Inc,143,16.15,15,Snack
+82,Milk,General Mills,115,29.16,15,Meat
+83,Chickpeas,Nestle,116,6.4,0,Produce
+84,Paper Towels,LocalFarm Co,127,36.17,15,Meat
+85,Hand Wash,Kellogg's,108,22.34,10,Personal Care
+86,Pork,Tyson,116,49.26,5,Grain
+87,Almonds,DailyNeeds Inc,107,37.23,12,Personal Care
+88,Soda,DailyNeeds Inc,117,41.14,12,Dairy
+89,Cheese,Unilever,114,28.61,12,Personal Care
+90,Ketchup,CocaCola,127,16.79,12,Snack
+91,Chickpeas,Kraft,114,34.13,10,Seafood
+92,Hand Wash,Kellogg's,131,37.27,8,Dairy
+93,Chocolate,P&G,113,39.52,0,Dairy
+94,Tea,LocalFarm Co,106,31.47,0,Dairy
+95,Peanuts,Tyson,134,42.72,8,Beverage
+96,Dish Soap,Unilever,145,47.17,15,Household
+97,Cheese,Organic Valley,137,24.17,12,Condiment
+98,Ice Cream,Kraft,144,33.05,5,Dairy
+99,Coffee,DailyNeeds Inc,112,18.32,8,Dairy
+100,Banana,Kraft,139,25.08,5,Snack
+101,Dish Soap,Kraft,142,38.55,10,Seafood
+102,Milk,General Mills,146,23.3,15,Personal Care
+103,Chocolate,Kraft,125,41.41,15,Dry Goods
+104,Banana,DailyNeeds Inc,102,36.03,15,Seafood
+105,Beef,PepsiCo,100,5.27,5,Household
+106,Tea,P&G,100,45.47,8,Personal Care
+107,Bread,Unilever,143,18.49,15,Dairy
+108,Chocolate,Tyson,102,5.63,10,Grain
+109,Apple,Kraft,126,31.56,0,Beverage
+110,Butter,Organic Valley,150,25.94,10,Dairy
+111,Potato,General Mills,121,39.61,5,Dairy
+112,Cashews,Kellogg's,108,49.59,15,Dairy
+113,Orange,Tyson,117,41.08,5,Household
+114,Chips,Organic Valley,112,41.27,8,Produce
+115,Ice Cream,Organic Valley,139,35.96,8,Personal Care
+116,Yogurt,Kraft,123,20.52,15,Meat
+117,Raisins,P&G,119,37.45,15,Grain
+118,Toothpaste,CocaCola,115,26.94,10,Meat
+119,Coffee,LocalFarm Co,145,15.03,0,Produce
+120,Pasta,Tyson,110,33.97,15,Grain

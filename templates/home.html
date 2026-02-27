@@ -1,0 +1,49 @@
+{% extends'layout.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>Grocery Store</h1>
+        <nav>
+            <ul>
+                <li>Login</li>
+                <li>Signin</li>
+                <li>Cart</li>
+            </ul>
+        </nav>
+    </section>
+    <table>
+        <thead>
+            <th>SI No</th>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Quantity Available</th>
+            <th>Price</th>
+            <th>Tax Percent</th>
+            <th>Item Type</th>
+            <th></th>
+        </thead>
+        <tbody>
+            {% for grocery in groceries %}
+                    <tr>
+                        <td>{{grocery['si_no']}}</td>
+                        <td>{{grocery['name']}}</td>
+                        <td>{{grocery['company']}}</td>
+                        <td>{{grocery['quantity']}}</td>
+                        <td>{{grocery['price_usd']}}</td>
+                        <td>{{grocery['tax_percent']}}</td>
+                        <td>{{grocery['item_type']}}</td>
+                        <td>
+                            <form action="/cart", method="post">
+                                <input type="hidden" name="id" value="{{ grocery['si_no'] }}">
+                                <button type="submit">Add to cart</button>
+                            </form>
+                        </td>
+                    </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
