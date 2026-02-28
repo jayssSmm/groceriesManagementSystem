@@ -28,25 +28,20 @@ def index():
     cursor=db.cursor()
     cursor.execute('SELECT * FROM grocery')
     row=cursor.fetchall()
-
-    if session['signin_success']:
-        signin=True
-    else:
-        signin=False
-    print(signin)
-
-    return render_template('home.html',groceries=row,signin=signin)
+    
+    return render_template('home.html',groceries=row)
  
-@app.route('/cart',methods=['POST'])
+@app.route('/cart',methods=['POST','GET'])
 def cart():
 
     if 'cart' not in session:
         session['cart']=[]
 
     if request.method=='POST':
-        foodId=request.form.get('id')
+        foodId=int(request.form.get('id'))
         if foodId:
             session['cart'].append(foodId)
+        print(session['cart'])
     return redirect('/')
 
 @app.route('/login',methods=['POST','GET'])
@@ -67,9 +62,9 @@ def login():
         if user: 
             session['user']={'user_id':user['id']}
             return redirect('/')
-        return render_template('login.html',error='true')
+        return redirect('/sigin.html')
 
-    return render_template('login.html',error='')
+    return render_template('login.html')
 
 @app.route('/signin',methods=['POST','GET'])
 def signin():
@@ -85,7 +80,26 @@ def signin():
         id=cursor.lastrowid
 
         session['user']={'user_id':id}
-        session['signin_success'] = True
         return redirect('/')
     
     return render_template('signin.html')
+
+@app.route('/cartview')
+def cartview():
+
+    db=get_db()
+    cursor=db.cursor()
+    if session['cart']:
+        placeholder=','.join(['?' for i in session['cart']])
+        
+        cursor.execute(f'SELECT * FROM grocery WHERE si_no IN ({placeholder})',tuple(session['cart']))
+        row=cursor.fetchall()
+        print(row)
+    else:
+        row=[]
+    return render_template('cart.html',cart=row)
+
+@app.route('/clearcart')
+def clearcart():
+    session['cart']=[]
+    return redirect('/cartview')

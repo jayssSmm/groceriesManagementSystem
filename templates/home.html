@@ -9,12 +9,6 @@
 {% endblock %}
 
 {% block body %}
-    <!-- <script>
-        if ({{signin | tojson}}){
-            alert('Sign In was Successfull')
-        }
-    </script> -->
-    
     <section>
         <h1>Grocery Store</h1>
         <nav>
@@ -25,12 +19,7 @@
                     </form>
                 </li>
                 <li>
-                    <form action="/signin">
-                        <button type="submit">Sign In</button>
-                    </form>
-                </li>
-                <li>
-                    <form action="/cart">
+                    <form action="/cartview">
                         <button type="submit">Cart</button>
                     </form>
                 </li>
@@ -50,21 +39,21 @@
         </thead>
         <tbody>
             {% for grocery in groceries %}
-                    <tr>
-                        <td>{{grocery['si_no']}}</td>
-                        <td>{{grocery['name']}}</td>
-                        <td>{{grocery['company']}}</td>
-                        <td>{{grocery['quantity']}}</td>
-                        <td>{{grocery['price_usd']}}</td>
-                        <td>{{grocery['tax_percent']}}</td>
-                        <td>{{grocery['item_type']}}</td>
-                        <td>
-                            <form action="/cart", method="post">
-                                <input type="hidden" name="id" value="{{ grocery['si_no'] }}">
-                                <button type="submit">Add to cart</button>
-                            </form>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{grocery['si_no']}}</td>
+                    <td>{{grocery['name']}}</td>
+                    <td>{{grocery['company']}}</td>
+                    <td>{{grocery['quantity']}}</td>
+                    <td>{{grocery['price_usd']}}</td>
+                    <td>{{grocery['tax_percent']}}</td>
+                    <td>{{grocery['item_type']}}</td>
+                    <td>
+                        <form action="/cart", method="post">
+                            <input type="hidden" name="id" value="{{ grocery['si_no'] }}">
+                            <button type="submit">Add to cart</button>
+                        </form>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>

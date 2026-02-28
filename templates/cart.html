@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Cart
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="../static/home.css">
+{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>Cart</h1>
+        <nav>
+            <ul>
+                <li>
+                    <form action="/clearcart">
+                        <button type="submit">Clear Cart</button>
+                    </form>
+                </li>
+                <li>
+                    <form action="/checkout">
+                        <button type="submit">Check Out</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    <table>
+        <thead>
+            <th>SI No</th>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Price</th>
+            <th>Tax Percent</th>
+            <th>Item Type</th>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+                <tr>
+                    <td>{{item['si_no']}}</td>
+                    <td>{{item['name']}}</td>
+                    <td>{{item['company']}}</td>
+                    <td>{{item['price_usd']}}</td>
+                    <td>{{item['tax_percent']}}</td>
+                    <td>{{item['item_type']}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
