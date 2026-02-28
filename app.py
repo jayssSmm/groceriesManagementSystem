@@ -34,10 +34,14 @@ def index():
 @app.route('/cart',methods=['POST','GET'])
 def cart():
 
+    if 'user' not in session:
+        return redirect('/login')
+
     if 'cart' not in session:
-        session['cart']=[]
+        session['cart']={}
 
     if request.method=='POST':
+
         foodId=int(request.form.get('id'))
         if foodId:
             session['cart'].append(foodId)
@@ -61,8 +65,9 @@ def login():
         
         if user: 
             session['user']={'user_id':user['id']}
+            print(session['user'])
             return redirect('/')
-        return redirect('/sigin.html')
+        return redirect('/signin')
 
     return render_template('login.html')
 
@@ -80,7 +85,11 @@ def signin():
         id=cursor.lastrowid
 
         session['user']={'user_id':id}
+        print(session['user'])
         return redirect('/')
+    
+    if 'user_id' not in session['user']: 
+        return render_template('signin.html',error=True)
     
     return render_template('signin.html')
 
@@ -103,3 +112,9 @@ def cartview():
 def clearcart():
     session['cart']=[]
     return redirect('/cartview')
+
+@app.route('/logout')
+def logout():
+    print(session['user'])
+    session.clear()
+    return redirect('/')
