@@ -4,10 +4,6 @@
     Home
 {% endblock %}
 
-{% block css %}
-    <link rel="stylesheet" href="../static/home.css">
-{% endblock %}
-
 {% block body %}
     <section>
         <h1>Grocery Store</h1>
@@ -18,14 +14,16 @@
                         <button type="submit">Login</button>
                     </form>
                 </li>
+                {% if user %}
+                    <li>
+                        <form action="/logout">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                {% endif %}
                 <li>
                     <form action="/cartview">
                         <button type="submit">Cart</button>
-                    </form>
-                </li>
-                <li>
-                    <form action="/logout">
-                        <button type="submit">Logout</button>
                     </form>
                 </li>
             </ul>

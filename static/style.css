@@ -38,3 +38,15 @@ caption {
 .column-border {
   border: 2px solid black;
 }
+
+section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul{
+    display: flex;
+    list-style-type: none;
+    gap: 8px;
+}

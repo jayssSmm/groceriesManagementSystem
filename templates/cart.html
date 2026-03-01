@@ -4,15 +4,16 @@
     Cart
 {% endblock %}
 
-{% block css %}
-    <link rel="stylesheet" href="../static/home.css">
-{% endblock %}
-
 {% block body %}
     <section>
         <h1>Cart</h1>
         <nav>
             <ul>
+                <li>
+                    <form action="/">
+                        <button type="submit">Back To Store</button>
+                    </form>
+                </li>
                 <li>
                     <form action="/clearcart">
                         <button type="submit">Clear Cart</button>
@@ -22,7 +23,7 @@
                     <form action="/checkout">
                         <button type="submit">Check Out</button>
                     </form>
-                </li>
+                </li>                
             </ul>
         </nav>
     </section>
@@ -33,7 +34,8 @@
             <th>Company</th>
             <th>Price</th>
             <th>Tax Percent</th>
-            <th>Item Type</th>
+            <th>Quantity in Cart</th>
+            <th></th>
         </thead>
         <tbody>
             {% for item in cart %}
@@ -43,7 +45,13 @@
                     <td>{{item['company']}}</td>
                     <td>{{item['price_usd']}}</td>
                     <td>{{item['tax_percent']}}</td>
-                    <td>{{item['item_type']}}</td>
+                    <td>{{item['quantity_in_cart']}}</td>
+                    <td>
+                        <form action="/removecart">
+                            <input type="hidden" name="id" value="{{item['si_no']}}">
+                            <button type="submit">Remove from Cart</button>
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

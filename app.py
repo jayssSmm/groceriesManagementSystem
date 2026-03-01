@@ -29,24 +29,12 @@ def index():
     cursor.execute('SELECT * FROM grocery')
     row=cursor.fetchall()
     
-    return render_template('home.html',groceries=row)
- 
-@app.route('/cart',methods=['POST','GET'])
-def cart():
+    try:
+        user=bool(session['user'])
+    except:
+        user=False
 
-    if 'user' not in session:
-        return redirect('/login')
-
-    if 'cart' not in session:
-        session['cart']={}
-
-    if request.method=='POST':
-
-        foodId=int(request.form.get('id'))
-        if foodId:
-            session['cart'].append(foodId)
-        print(session['cart'])
-    return redirect('/')
+    return render_template('home.html',groceries=row, user=user)
 
 @app.route('/login',methods=['POST','GET'])
 def login():
@@ -65,8 +53,16 @@ def login():
         
         if user: 
             session['user']={'user_id':user['id']}
-            print(session['user'])
+
+            db=get_db()
+            cursor=db.cursor()
+            cursor.execute('SELECT * FROM cart WHERE id=?',(user['id'],))
+            cart=cursor.fetchall()
+            print(list(cart))
+
+            session['cart']=[dict(row) for row in cart]
             return redirect('/')
+        
         return redirect('/signin')
 
     return render_template('login.html')
@@ -85,7 +81,6 @@ def signin():
         id=cursor.lastrowid
 
         session['user']={'user_id':id}
-        print(session['user'])
         return redirect('/')
     
     if 'user_id' not in session['user']: 
@@ -93,20 +88,72 @@ def signin():
     
     return render_template('signin.html')
 
+@app.route('/cart',methods=['POST','GET'])
+def cart():
+
+    if 'user' not in session:
+        return redirect('/login')
+
+    if 'cart' not in session:
+        session['cart']=[]
+
+    '''cart= [ 
+            {user_id,grocery_id,qunatity},
+            {},
+        ]'''
+    
+    if request.method=='POST':
+        foodId=int(request.form.get('id'))
+
+        cart_groceries=list(map(lambda x:x['grocery_id'],session['cart']))
+        if foodId in cart_groceries:
+            for i in session['cart']:
+                if i['grocery_id']==foodId:
+                    i['quantity']+=1
+                    break
+        else:
+            cart={'user_id':session['user']['user_id'],'grocery_id':foodId,'quantity':1}
+            session['cart'].append(cart)
+            
+    return redirect('/')
+
 @app.route('/cartview')
 def cartview():
 
-    db=get_db()
-    cursor=db.cursor()
-    if session['cart']:
+    try:
         placeholder=','.join(['?' for i in session['cart']])
-        
-        cursor.execute(f'SELECT * FROM grocery WHERE si_no IN ({placeholder})',tuple(session['cart']))
+
+        db=get_db()
+        cursor=db.cursor()
+
+        cursor.execute('DELETE FROM cart;')
+        for i in session['cart']: 
+            cursor.execute('INSERT INTO cart(id,grocery_id,quantity_in_cart) VALUES(?,?,?)',tuple(i.values()))
+        db.commit()
+
+        foodId=tuple(map(lambda x:x['grocery_id'],session['cart']))        
+        cursor.execute(f'SELECT grocery.*, cart.quantity_in_cart FROM grocery JOIN cart ON grocery.si_no=cart.grocery_id WHERE si_no IN ({placeholder})',foodId)
         row=cursor.fetchall()
-        print(row)
-    else:
+    except KeyError:
         row=[]
     return render_template('cart.html',cart=row)
+
+'''cart= [ 
+    {user_id,grocery_id,qunatity},
+    ]'''
+    
+@app.route('/removecart',methods=['GET','POST'])
+def removecart():
+    if request.method == 'POST':
+        foodId = int(request.form.get('id'))
+        for i in session['cart']:
+            if foodId == i['grocery_id']:
+                i['quantity'] -= 1
+                if i['quantity'] <= 0:
+                    session['cart'].remove(i)  
+                session.modified = True  # Save changes to session
+                break
+    return redirect('/cartview')  
 
 @app.route('/clearcart')
 def clearcart():
@@ -115,6 +162,12 @@ def clearcart():
 
 @app.route('/logout')
 def logout():
-    print(session['user'])
+
+    if session['cart']==[]:
+        db=get_db()
+        cursor=db.cursor() 
+        cursor.execute('DELETE FROM cart WHERE id=?',(session['user']['user_id'],))
+        db.commit()
+
     session.clear()
     return redirect('/')
